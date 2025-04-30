@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { ModalPix } from "@/components/ModalPix"
+import { ModalEspecie } from "@/components/ModalEspecie"
 
 const cadastroSchema = z.object({
   nome: z.string().min(1, "Nome é obrigatório"),
@@ -25,8 +27,9 @@ const cadastroSchema = z.object({
 type CadastroFormData = z.infer<typeof cadastroSchema>
 
 export default function CadastroCamiseta() {
-  const [activeCamisa, setActiveCamisa] = useState<"bege" | "preta">("bege");
-  const [turmaSelecionada, setTurmaSelecionada] = useState<"3° info A" | "3° info B" | "professor">();
+  const [openPix, setOpenPix] = useState(false);
+  const [openEspecie, setOpenEspecie] = useState(false);
+  const [turmaSelecionada, setTurmaSelecionada] = useState<CadastroFormData["turma"]>();
 
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<CadastroFormData>({
     resolver: zodResolver(cadastroSchema),
@@ -36,8 +39,17 @@ export default function CadastroCamiseta() {
     }
   })
 
+  const camisaSelecionada = watch("camisa");
+  const pagamentoSelecionado = watch("pagamento");
+
   const onSubmit = (data: CadastroFormData) => {
-    console.log("Dados enviados:", data)
+    console.log("Dados enviados:", data);
+
+    if (data.pagamento === "pix") {
+      setOpenPix(true);
+    } else {
+      setOpenEspecie(true);
+    }
   }
 
   return (
@@ -57,21 +69,18 @@ export default function CadastroCamiseta() {
             {["bege", "preta"].map((color) => (
               <div
                 key={color}
-                className={`relative border-2 rounded-md overflow-hidden transition-all duration-300 ${watch("camisa") === color ? "border-blue-600" : "border-transparent"}`}
+                className={`relative border-2 rounded-md overflow-hidden transition-all duration-300 ${camisaSelecionada === color ? "border-blue-600" : "border-transparent"}`}
               >
-                <span className={`absolute right-0 border p-1 rounded-bl-md border-t-transparent border-r-transparent font-bold text-sm ${watch("camisa") === color ? "border-blue-600" : "border-transparent"}`}>
+                <span className={`absolute right-0 p-1 text-sm font-bold border rounded-bl-md border-t-transparent border-r-transparent ${camisaSelecionada === color && "border-blue-600"}`}>
                   R$ 54,99
                 </span>
-                <div className={`w-fit flex gap-1 items-center absolute bottom-0 border rounded-tr-md border-b-transparent border-l-transparent p-1 ${watch("camisa") === color ? "border-blue-600" : "border-transparent"}`}>
-                  <Label htmlFor={color}>{color.charAt(0).toUpperCase() + color.slice(1)}</Label>
+                <div className={`absolute bottom-0 flex items-center gap-1 p-1 border rounded-tr-md border-b-transparent border-l-transparent ${camisaSelecionada === color && "border-blue-600"}`}>
+                  <Label className={`${camisaSelecionada === color && "border-blue-600"}`} htmlFor={color}>{color.charAt(0).toUpperCase() + color.slice(1)}</Label>
                   <RadioGroupItem
                     id={color}
                     value={color}
                     {...register("camisa")}
-                    onClick={() => {
-                      setActiveCamisa(color as "bege" | "preta")
-                      setValue("camisa", color as "bege" | "preta")
-                    }}
+                    onClick={() => setValue("camisa", color as CadastroFormData["camisa"])}
                   />
                 </div>
                 <Image
@@ -86,7 +95,6 @@ export default function CadastroCamiseta() {
         </RadioGroup>
       </div>
 
-      {/* NOVO CAMPO - TELEFONE */}
       <div className="space-y-2">
         <Label htmlFor="telefone">Número de Contato</Label>
         <Input id="telefone" placeholder="(99) 99999-9999" {...register("telefone")} />
@@ -100,19 +108,18 @@ export default function CadastroCamiseta() {
             <div
               key={turma}
               onClick={() => {
-                setTurmaSelecionada(turma as "3° info A" | "3° info B" | "professor")
-                setValue("turma", turma as "3° info A" | "3° info B" | "professor")
+                setTurmaSelecionada(turma as CadastroFormData["turma"])
+                setValue("turma", turma as CadastroFormData["turma"])
               }}
               className={`p-3 border w-fit cursor-pointer transition-all duration-300 ${
                 turmaSelecionada === turma && "bg-[#07038C] text-white scale-105"
-              } ${index === 0 && "rounded-l-md"}
-              ${index === 2 && "rounded-r-md"}`}
+              } ${index === 0 && "rounded-l-md"} ${index === 2 && "rounded-r-md"}`}
             >
               {turma}
             </div>
           ))}
         </div>
-        {errors.turma && <p className="text-red-500 text-sm">{errors.turma.message == "Required" && "Requirido"}</p>}
+        {errors.turma && <p className="text-red-500 text-sm">{errors.turma.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -123,11 +130,13 @@ export default function CadastroCamiseta() {
           </SelectTrigger>
           <SelectContent>
             {["pp", "p", "m", "g", "gg", "xgg"].map((size) => (
-              <SelectItem key={size} value={size}>{size.toUpperCase()}</SelectItem>
+              <SelectItem key={size} value={size}>
+                {size.toUpperCase()}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        {errors.tamanho && <p className="text-red-500 text-sm">{errors.tamanho.message == "Required" && "Requirido"}</p>}
+        {errors.tamanho && <p className="text-red-500 text-sm">{errors.tamanho.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -142,7 +151,7 @@ export default function CadastroCamiseta() {
             <SelectItem value="baby-lock">Baby Lock</SelectItem>
           </SelectContent>
         </Select>
-        {errors.estilo && <p className="text-red-500 text-sm">{errors.estilo.message == "Required" && "Requirido"}</p>}
+        {errors.estilo && <p className="text-red-500 text-sm">{errors.estilo.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -154,7 +163,7 @@ export default function CadastroCamiseta() {
                 id={forma}
                 value={forma}
                 {...register("pagamento")}
-                onClick={() => setValue("pagamento", forma as "pix" | "presencial")}
+                onClick={() => setValue("pagamento", forma as CadastroFormData["pagamento"])}
               />
               <Label htmlFor={forma}>
                 {forma === "pix" ? "Pix" : "Espécie (Físico)"}
@@ -162,12 +171,15 @@ export default function CadastroCamiseta() {
             </div>
           ))}
         </RadioGroup>
-        {errors.pagamento && <p className="text-red-500 text-sm">{errors.pagamento.message == "Required" && "Requirido"}</p>}
+        {errors.pagamento && <p className="text-red-500 text-sm">{errors.pagamento.message}</p>}
       </div>
 
       <Button type="submit" className="w-full cursor-pointer bg-[#07038C] hover:bg-[#24208C]">
         Enviar
       </Button>
+
+      <ModalPix open={openPix} onClose={() => setOpenPix(false)} />
+      <ModalEspecie open={openEspecie} onClose={() => setOpenEspecie(false)} />
     </form>
   )
 }
