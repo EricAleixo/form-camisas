@@ -18,13 +18,23 @@ import { ModalEspecie } from "@/app/components/ModalEspecie"
 
 const cadastroSchema = z.object({
   nome: z.string().min(1, "Nome é obrigatório"),
-  telefone: z.string().min(8, "Telefone é obrigatório"),
-  camisa: z.enum(["bege", "preta"]),
-  turma: z.enum(["3° info A", "3° info B", "professor"]),
-  tamanho: z.enum(["pp", "p", "m", "g", "gg", "xgg"]),
-  estilo: z.enum(["normal", "oversized", "baby-lock"]),
-  pagamento: z.enum(["pix", "presencial"]),
+  telefone: z
+    .string()
+    .min(1, "Telefone é obrigatório")
+    .regex(/^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/, "Telefone inválido"),
+  camisa: z.enum(["BEGE", "PRETA"]),
+  turma: z.enum(["INFOB3", "INFOA3", "PROFESSOR"]),
+  tamanho: z.enum(["PP", "P", "M", "G", "GG", "XGG"]),
+  estilo: z.enum(["NORMAL", "OVERSIZED", "BABY_LOCK"]),
+  pagamento: z.enum(["PIX", "FISICO"]),
 })
+
+const turmas = [
+  { value: "INFOA3", label: "3º Info A" },
+  { value: "INFOB3", label: "3º Info B" },
+  { value: "PROFESSOR", label: "Professor" }
+];
+
 
 type CadastroFormData = z.infer<typeof cadastroSchema>
 
@@ -36,19 +46,18 @@ export default function CadastroCamiseta() {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<CadastroFormData>({
     resolver: zodResolver(cadastroSchema),
     defaultValues: {
-      camisa: "bege",
-      pagamento: "pix",
+      camisa: "BEGE",
+      pagamento: "PIX",
     }
   })
 
   const camisaSelecionada = watch("camisa");
-  const pagamentoSelecionado = watch("pagamento");
 
   const onSubmit = (data: CadastroFormData) => {
     console.log("Dados enviados:", data);
     axios.post("http://localhost:3000/api/usersForm", data)
 
-    if (data.pagamento === "pix") {
+    if (data.pagamento === "PIX") {
       setOpenPix(true);
     } else {
       setOpenEspecie(true);
@@ -67,9 +76,9 @@ export default function CadastroCamiseta() {
 
       <div className="space-y-2">
         <Label>Camisa</Label>
-        <RadioGroup defaultValue="bege">
+        <RadioGroup defaultValue="BEGE">
           <div className="flex gap-2">
-            {["bege", "preta"].map((color) => (
+            {["BEGE", "PRETA"].map((color) => (
               <div
                 key={color}
                 className={`relative border-2 rounded-md overflow-hidden transition-all duration-300 ${camisaSelecionada === color ? "border-blue-600" : "border-transparent"}`}
@@ -107,21 +116,21 @@ export default function CadastroCamiseta() {
       <div className="space-y-2">
         <Label>Turma</Label>
         <div className="flex">
-          {["3° info A", "3° info B", "professor"].map((turma, index) => (
+          {turmas.map((turma, index) => (
             <div
-              key={turma}
+              key={turma.value}
               onClick={() => {
-                setTurmaSelecionada(turma as CadastroFormData["turma"])
-                setValue("turma", turma as CadastroFormData["turma"])
+                setTurmaSelecionada(turma.value as CadastroFormData["turma"])
+                setValue("turma", turma.value as CadastroFormData["turma"])
               }}
-              className={`p-3 border w-fit cursor-pointer transition-all duration-300 ${
-                turmaSelecionada === turma && "bg-[#07038C] text-white scale-105"
-              } ${index === 0 && "rounded-l-md"} ${index === 2 && "rounded-r-md"}`}
+              className={`p-3 border w-fit cursor-pointer transition-all duration-300 ${turmaSelecionada === turma.value && "bg-[#07038C] text-white scale-105"
+                } ${index === 0 && "rounded-l-md"} ${index === turmas.length - 1 && "rounded-r-md"}`}
             >
-              {turma}
+              {turma.label}
             </div>
           ))}
         </div>
+
         {errors.turma && <p className="text-red-500 text-sm">{errors.turma.message}</p>}
       </div>
 
@@ -132,7 +141,7 @@ export default function CadastroCamiseta() {
             <SelectValue placeholder="Selecione o tamanho" />
           </SelectTrigger>
           <SelectContent>
-            {["pp", "p", "m", "g", "gg", "xgg"].map((size) => (
+            {["PP", "P", "M", "G", "GG", "XGG"].map((size) => (
               <SelectItem key={size} value={size}>
                 {size.toUpperCase()}
               </SelectItem>
@@ -149,9 +158,9 @@ export default function CadastroCamiseta() {
             <SelectValue placeholder="Selecione o estilo" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="normal">Normal</SelectItem>
-            <SelectItem value="oversized">Oversized</SelectItem>
-            <SelectItem value="baby-lock">Baby Lock</SelectItem>
+            <SelectItem value="NORMAL">Normal</SelectItem>
+            <SelectItem value="OVERSIZED">Oversized</SelectItem>
+            <SelectItem value="BABY_LOCK">Baby Lock</SelectItem>
           </SelectContent>
         </Select>
         {errors.estilo && <p className="text-red-500 text-sm">{errors.estilo.message}</p>}
@@ -160,7 +169,7 @@ export default function CadastroCamiseta() {
       <div className="space-y-2">
         <Label>Forma de Pagamento</Label>
         <RadioGroup defaultValue="pix">
-          {["pix", "presencial"].map((forma) => (
+          {["PIX", "PRESENCIAL"].map((forma) => (
             <div key={forma} className="flex items-center space-x-2">
               <RadioGroupItem
                 id={forma}
@@ -169,7 +178,7 @@ export default function CadastroCamiseta() {
                 onClick={() => setValue("pagamento", forma as CadastroFormData["pagamento"])}
               />
               <Label htmlFor={forma}>
-                {forma === "pix" ? "Pix" : "Espécie (Físico)"}
+                {forma === "PIX" ? "PIX" : "Espécie (Físico)"}
               </Label>
             </div>
           ))}

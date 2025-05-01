@@ -953,8 +953,8 @@ export namespace Prisma {
   export type User_formMinAggregateOutputType = {
     id: string | null
     nome: string | null
+    telefone: string | null
     camisa: $Enums.CamisaCor | null
-    numero: string | null
     turma: $Enums.Turma | null
     tamanho: $Enums.Tamanho | null
     estilo: $Enums.EstilosCamisas | null
@@ -964,8 +964,8 @@ export namespace Prisma {
   export type User_formMaxAggregateOutputType = {
     id: string | null
     nome: string | null
+    telefone: string | null
     camisa: $Enums.CamisaCor | null
-    numero: string | null
     turma: $Enums.Turma | null
     tamanho: $Enums.Tamanho | null
     estilo: $Enums.EstilosCamisas | null
@@ -975,8 +975,8 @@ export namespace Prisma {
   export type User_formCountAggregateOutputType = {
     id: number
     nome: number
+    telefone: number
     camisa: number
-    numero: number
     turma: number
     tamanho: number
     estilo: number
@@ -988,8 +988,8 @@ export namespace Prisma {
   export type User_formMinAggregateInputType = {
     id?: true
     nome?: true
+    telefone?: true
     camisa?: true
-    numero?: true
     turma?: true
     tamanho?: true
     estilo?: true
@@ -999,8 +999,8 @@ export namespace Prisma {
   export type User_formMaxAggregateInputType = {
     id?: true
     nome?: true
+    telefone?: true
     camisa?: true
-    numero?: true
     turma?: true
     tamanho?: true
     estilo?: true
@@ -1010,8 +1010,8 @@ export namespace Prisma {
   export type User_formCountAggregateInputType = {
     id?: true
     nome?: true
+    telefone?: true
     camisa?: true
-    numero?: true
     turma?: true
     tamanho?: true
     estilo?: true
@@ -1094,8 +1094,8 @@ export namespace Prisma {
   export type User_formGroupByOutputType = {
     id: string
     nome: string
+    telefone: string
     camisa: $Enums.CamisaCor
-    numero: string
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
@@ -1122,8 +1122,8 @@ export namespace Prisma {
   export type user_formSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
+    telefone?: boolean
     camisa?: boolean
-    numero?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
@@ -1133,8 +1133,8 @@ export namespace Prisma {
   export type user_formSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
+    telefone?: boolean
     camisa?: boolean
-    numero?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
@@ -1144,8 +1144,8 @@ export namespace Prisma {
   export type user_formSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
+    telefone?: boolean
     camisa?: boolean
-    numero?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
@@ -1155,15 +1155,15 @@ export namespace Prisma {
   export type user_formSelectScalar = {
     id?: boolean
     nome?: boolean
+    telefone?: boolean
     camisa?: boolean
-    numero?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
     pagamento?: boolean
   }
 
-  export type user_formOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "camisa" | "numero" | "turma" | "tamanho" | "estilo" | "pagamento", ExtArgs["result"]["user_form"]>
+  export type user_formOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "telefone" | "camisa" | "turma" | "tamanho" | "estilo" | "pagamento", ExtArgs["result"]["user_form"]>
 
   export type $user_formPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "user_form"
@@ -1171,8 +1171,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       nome: string
+      telefone: string
       camisa: $Enums.CamisaCor
-      numero: string
       turma: $Enums.Turma
       tamanho: $Enums.Tamanho
       estilo: $Enums.EstilosCamisas
@@ -1602,8 +1602,8 @@ export namespace Prisma {
   interface user_formFieldRefs {
     readonly id: FieldRef<"user_form", 'String'>
     readonly nome: FieldRef<"user_form", 'String'>
+    readonly telefone: FieldRef<"user_form", 'String'>
     readonly camisa: FieldRef<"user_form", 'CamisaCor'>
-    readonly numero: FieldRef<"user_form", 'String'>
     readonly turma: FieldRef<"user_form", 'Turma'>
     readonly tamanho: FieldRef<"user_form", 'Tamanho'>
     readonly estilo: FieldRef<"user_form", 'EstilosCamisas'>
@@ -1991,8 +1991,8 @@ export namespace Prisma {
   export const User_formScalarFieldEnum: {
     id: 'id',
     nome: 'nome',
+    telefone: 'telefone',
     camisa: 'camisa',
-    numero: 'numero',
     turma: 'turma',
     tamanho: 'tamanho',
     estilo: 'estilo',
@@ -2130,8 +2130,8 @@ export namespace Prisma {
     NOT?: user_formWhereInput | user_formWhereInput[]
     id?: StringFilter<"user_form"> | string
     nome?: StringFilter<"user_form"> | string
+    telefone?: StringFilter<"user_form"> | string
     camisa?: EnumCamisaCorFilter<"user_form"> | $Enums.CamisaCor
-    numero?: StringFilter<"user_form"> | string
     turma?: EnumTurmaFilter<"user_form"> | $Enums.Turma
     tamanho?: EnumTamanhoFilter<"user_form"> | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFilter<"user_form"> | $Enums.EstilosCamisas
@@ -2141,8 +2141,8 @@ export namespace Prisma {
   export type user_formOrderByWithRelationInput = {
     id?: SortOrder
     nome?: SortOrder
+    telefone?: SortOrder
     camisa?: SortOrder
-    numero?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
@@ -2155,8 +2155,8 @@ export namespace Prisma {
     OR?: user_formWhereInput[]
     NOT?: user_formWhereInput | user_formWhereInput[]
     nome?: StringFilter<"user_form"> | string
+    telefone?: StringFilter<"user_form"> | string
     camisa?: EnumCamisaCorFilter<"user_form"> | $Enums.CamisaCor
-    numero?: StringFilter<"user_form"> | string
     turma?: EnumTurmaFilter<"user_form"> | $Enums.Turma
     tamanho?: EnumTamanhoFilter<"user_form"> | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFilter<"user_form"> | $Enums.EstilosCamisas
@@ -2166,8 +2166,8 @@ export namespace Prisma {
   export type user_formOrderByWithAggregationInput = {
     id?: SortOrder
     nome?: SortOrder
+    telefone?: SortOrder
     camisa?: SortOrder
-    numero?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
@@ -2183,8 +2183,8 @@ export namespace Prisma {
     NOT?: user_formScalarWhereWithAggregatesInput | user_formScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"user_form"> | string
     nome?: StringWithAggregatesFilter<"user_form"> | string
+    telefone?: StringWithAggregatesFilter<"user_form"> | string
     camisa?: EnumCamisaCorWithAggregatesFilter<"user_form"> | $Enums.CamisaCor
-    numero?: StringWithAggregatesFilter<"user_form"> | string
     turma?: EnumTurmaWithAggregatesFilter<"user_form"> | $Enums.Turma
     tamanho?: EnumTamanhoWithAggregatesFilter<"user_form"> | $Enums.Tamanho
     estilo?: EnumEstilosCamisasWithAggregatesFilter<"user_form"> | $Enums.EstilosCamisas
@@ -2194,8 +2194,8 @@ export namespace Prisma {
   export type user_formCreateInput = {
     id?: string
     nome: string
+    telefone: string
     camisa: $Enums.CamisaCor
-    numero: string
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
@@ -2205,8 +2205,8 @@ export namespace Prisma {
   export type user_formUncheckedCreateInput = {
     id?: string
     nome: string
+    telefone: string
     camisa: $Enums.CamisaCor
-    numero: string
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
@@ -2216,8 +2216,8 @@ export namespace Prisma {
   export type user_formUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
-    numero?: StringFieldUpdateOperationsInput | string
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
@@ -2227,8 +2227,8 @@ export namespace Prisma {
   export type user_formUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
-    numero?: StringFieldUpdateOperationsInput | string
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
@@ -2238,8 +2238,8 @@ export namespace Prisma {
   export type user_formCreateManyInput = {
     id?: string
     nome: string
+    telefone: string
     camisa: $Enums.CamisaCor
-    numero: string
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
@@ -2249,8 +2249,8 @@ export namespace Prisma {
   export type user_formUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
-    numero?: StringFieldUpdateOperationsInput | string
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
@@ -2260,8 +2260,8 @@ export namespace Prisma {
   export type user_formUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    telefone?: StringFieldUpdateOperationsInput | string
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
-    numero?: StringFieldUpdateOperationsInput | string
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
@@ -2321,8 +2321,8 @@ export namespace Prisma {
   export type user_formCountOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
+    telefone?: SortOrder
     camisa?: SortOrder
-    numero?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
@@ -2332,8 +2332,8 @@ export namespace Prisma {
   export type user_formMaxOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
+    telefone?: SortOrder
     camisa?: SortOrder
-    numero?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
@@ -2343,8 +2343,8 @@ export namespace Prisma {
   export type user_formMinOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
+    telefone?: SortOrder
     camisa?: SortOrder
-    numero?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder

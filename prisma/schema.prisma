@@ -17,8 +17,8 @@ datasource db {
 model user_form{
   id String @id @default(uuid())
   nome String
+  telefone String
   camisa CamisaCor
-  numero String
   turma Turma
   tamanho Tamanho
   estilo EstilosCamisas
