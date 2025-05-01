@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres
+    container_name: form_camisas_container_db
+    ports:
+      - 5433
+    restart: always
+
+    environment:
+      POSTGRES_USER: eric
+      POSTGRES_PASSWORD: azul20264552
+      db: form_db
+    volumes:
+      - postgres-data:/var/lib/postgres/postgres-data
+
+volumes:
+  postgres-data:
