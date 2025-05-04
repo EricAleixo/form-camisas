@@ -15,7 +15,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
 
-    const { nome, camisa, estilo, telefone , pagamento, tamanho, turma } = await req.json()
+    const { nome, camisa, estilo, telefone , pagamento, tamanho, turma, status, valor } = await req.json()
 
     const userSave = await prisma.user_form.create({
         data: {
@@ -25,7 +25,9 @@ export async function POST(req: Request) {
             telefone: telefone,
             pagamento: pagamento,
             tamanho: tamanho,
-            turma: turma
+            turma: turma,
+            status: status,
+            valor: valor
         }
     })
 

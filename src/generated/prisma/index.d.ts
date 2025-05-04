@@ -68,6 +68,14 @@ export const Pagamento: {
 
 export type Pagamento = (typeof Pagamento)[keyof typeof Pagamento]
 
+
+export const Status: {
+  PENDENTE: 'PENDENTE',
+  PAGO: 'PAGO'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
 }
 
 export type CamisaCor = $Enums.CamisaCor
@@ -89,6 +97,10 @@ export const EstilosCamisas: typeof $Enums.EstilosCamisas
 export type Pagamento = $Enums.Pagamento
 
 export const Pagamento: typeof $Enums.Pagamento
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
 
 /**
  * ##  Prisma Client ʲˢ
@@ -946,76 +958,106 @@ export namespace Prisma {
 
   export type AggregateUser_form = {
     _count: User_formCountAggregateOutputType | null
+    _avg: User_formAvgAggregateOutputType | null
+    _sum: User_formSumAggregateOutputType | null
     _min: User_formMinAggregateOutputType | null
     _max: User_formMaxAggregateOutputType | null
+  }
+
+  export type User_formAvgAggregateOutputType = {
+    valor: number | null
+  }
+
+  export type User_formSumAggregateOutputType = {
+    valor: number | null
   }
 
   export type User_formMinAggregateOutputType = {
     id: string | null
     nome: string | null
     telefone: string | null
+    valor: number | null
     camisa: $Enums.CamisaCor | null
     turma: $Enums.Turma | null
     tamanho: $Enums.Tamanho | null
     estilo: $Enums.EstilosCamisas | null
     pagamento: $Enums.Pagamento | null
+    status: $Enums.Status | null
   }
 
   export type User_formMaxAggregateOutputType = {
     id: string | null
     nome: string | null
     telefone: string | null
+    valor: number | null
     camisa: $Enums.CamisaCor | null
     turma: $Enums.Turma | null
     tamanho: $Enums.Tamanho | null
     estilo: $Enums.EstilosCamisas | null
     pagamento: $Enums.Pagamento | null
+    status: $Enums.Status | null
   }
 
   export type User_formCountAggregateOutputType = {
     id: number
     nome: number
     telefone: number
+    valor: number
     camisa: number
     turma: number
     tamanho: number
     estilo: number
     pagamento: number
+    status: number
     _all: number
   }
 
+
+  export type User_formAvgAggregateInputType = {
+    valor?: true
+  }
+
+  export type User_formSumAggregateInputType = {
+    valor?: true
+  }
 
   export type User_formMinAggregateInputType = {
     id?: true
     nome?: true
     telefone?: true
+    valor?: true
     camisa?: true
     turma?: true
     tamanho?: true
     estilo?: true
     pagamento?: true
+    status?: true
   }
 
   export type User_formMaxAggregateInputType = {
     id?: true
     nome?: true
     telefone?: true
+    valor?: true
     camisa?: true
     turma?: true
     tamanho?: true
     estilo?: true
     pagamento?: true
+    status?: true
   }
 
   export type User_formCountAggregateInputType = {
     id?: true
     nome?: true
     telefone?: true
+    valor?: true
     camisa?: true
     turma?: true
     tamanho?: true
     estilo?: true
     pagamento?: true
+    status?: true
     _all?: true
   }
 
@@ -1057,6 +1099,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: User_formAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: User_formSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: User_formMinAggregateInputType
@@ -1087,6 +1141,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: User_formCountAggregateInputType | true
+    _avg?: User_formAvgAggregateInputType
+    _sum?: User_formSumAggregateInputType
     _min?: User_formMinAggregateInputType
     _max?: User_formMaxAggregateInputType
   }
@@ -1095,12 +1151,16 @@ export namespace Prisma {
     id: string
     nome: string
     telefone: string
+    valor: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
+    status: $Enums.Status
     _count: User_formCountAggregateOutputType | null
+    _avg: User_formAvgAggregateOutputType | null
+    _sum: User_formSumAggregateOutputType | null
     _min: User_formMinAggregateOutputType | null
     _max: User_formMaxAggregateOutputType | null
   }
@@ -1123,47 +1183,55 @@ export namespace Prisma {
     id?: boolean
     nome?: boolean
     telefone?: boolean
+    valor?: boolean
     camisa?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
     pagamento?: boolean
+    status?: boolean
   }, ExtArgs["result"]["user_form"]>
 
   export type user_formSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
     telefone?: boolean
+    valor?: boolean
     camisa?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
     pagamento?: boolean
+    status?: boolean
   }, ExtArgs["result"]["user_form"]>
 
   export type user_formSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
     telefone?: boolean
+    valor?: boolean
     camisa?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
     pagamento?: boolean
+    status?: boolean
   }, ExtArgs["result"]["user_form"]>
 
   export type user_formSelectScalar = {
     id?: boolean
     nome?: boolean
     telefone?: boolean
+    valor?: boolean
     camisa?: boolean
     turma?: boolean
     tamanho?: boolean
     estilo?: boolean
     pagamento?: boolean
+    status?: boolean
   }
 
-  export type user_formOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "telefone" | "camisa" | "turma" | "tamanho" | "estilo" | "pagamento", ExtArgs["result"]["user_form"]>
+  export type user_formOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "telefone" | "valor" | "camisa" | "turma" | "tamanho" | "estilo" | "pagamento" | "status", ExtArgs["result"]["user_form"]>
 
   export type $user_formPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "user_form"
@@ -1172,11 +1240,13 @@ export namespace Prisma {
       id: string
       nome: string
       telefone: string
+      valor: number
       camisa: $Enums.CamisaCor
       turma: $Enums.Turma
       tamanho: $Enums.Tamanho
       estilo: $Enums.EstilosCamisas
       pagamento: $Enums.Pagamento
+      status: $Enums.Status
     }, ExtArgs["result"]["user_form"]>
     composites: {}
   }
@@ -1603,11 +1673,13 @@ export namespace Prisma {
     readonly id: FieldRef<"user_form", 'String'>
     readonly nome: FieldRef<"user_form", 'String'>
     readonly telefone: FieldRef<"user_form", 'String'>
+    readonly valor: FieldRef<"user_form", 'Int'>
     readonly camisa: FieldRef<"user_form", 'CamisaCor'>
     readonly turma: FieldRef<"user_form", 'Turma'>
     readonly tamanho: FieldRef<"user_form", 'Tamanho'>
     readonly estilo: FieldRef<"user_form", 'EstilosCamisas'>
     readonly pagamento: FieldRef<"user_form", 'Pagamento'>
+    readonly status: FieldRef<"user_form", 'Status'>
   }
     
 
@@ -1992,11 +2064,13 @@ export namespace Prisma {
     id: 'id',
     nome: 'nome',
     telefone: 'telefone',
+    valor: 'valor',
     camisa: 'camisa',
     turma: 'turma',
     tamanho: 'tamanho',
     estilo: 'estilo',
-    pagamento: 'pagamento'
+    pagamento: 'pagamento',
+    status: 'status'
   };
 
   export type User_formScalarFieldEnum = (typeof User_formScalarFieldEnum)[keyof typeof User_formScalarFieldEnum]
@@ -2034,6 +2108,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -2108,16 +2196,30 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Status'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Status[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -2131,22 +2233,26 @@ export namespace Prisma {
     id?: StringFilter<"user_form"> | string
     nome?: StringFilter<"user_form"> | string
     telefone?: StringFilter<"user_form"> | string
+    valor?: IntFilter<"user_form"> | number
     camisa?: EnumCamisaCorFilter<"user_form"> | $Enums.CamisaCor
     turma?: EnumTurmaFilter<"user_form"> | $Enums.Turma
     tamanho?: EnumTamanhoFilter<"user_form"> | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFilter<"user_form"> | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoFilter<"user_form"> | $Enums.Pagamento
+    status?: EnumStatusFilter<"user_form"> | $Enums.Status
   }
 
   export type user_formOrderByWithRelationInput = {
     id?: SortOrder
     nome?: SortOrder
     telefone?: SortOrder
+    valor?: SortOrder
     camisa?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
     pagamento?: SortOrder
+    status?: SortOrder
   }
 
   export type user_formWhereUniqueInput = Prisma.AtLeast<{
@@ -2156,25 +2262,31 @@ export namespace Prisma {
     NOT?: user_formWhereInput | user_formWhereInput[]
     nome?: StringFilter<"user_form"> | string
     telefone?: StringFilter<"user_form"> | string
+    valor?: IntFilter<"user_form"> | number
     camisa?: EnumCamisaCorFilter<"user_form"> | $Enums.CamisaCor
     turma?: EnumTurmaFilter<"user_form"> | $Enums.Turma
     tamanho?: EnumTamanhoFilter<"user_form"> | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFilter<"user_form"> | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoFilter<"user_form"> | $Enums.Pagamento
+    status?: EnumStatusFilter<"user_form"> | $Enums.Status
   }, "id">
 
   export type user_formOrderByWithAggregationInput = {
     id?: SortOrder
     nome?: SortOrder
     telefone?: SortOrder
+    valor?: SortOrder
     camisa?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
     pagamento?: SortOrder
+    status?: SortOrder
     _count?: user_formCountOrderByAggregateInput
+    _avg?: user_formAvgOrderByAggregateInput
     _max?: user_formMaxOrderByAggregateInput
     _min?: user_formMinOrderByAggregateInput
+    _sum?: user_formSumOrderByAggregateInput
   }
 
   export type user_formScalarWhereWithAggregatesInput = {
@@ -2184,88 +2296,104 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"user_form"> | string
     nome?: StringWithAggregatesFilter<"user_form"> | string
     telefone?: StringWithAggregatesFilter<"user_form"> | string
+    valor?: IntWithAggregatesFilter<"user_form"> | number
     camisa?: EnumCamisaCorWithAggregatesFilter<"user_form"> | $Enums.CamisaCor
     turma?: EnumTurmaWithAggregatesFilter<"user_form"> | $Enums.Turma
     tamanho?: EnumTamanhoWithAggregatesFilter<"user_form"> | $Enums.Tamanho
     estilo?: EnumEstilosCamisasWithAggregatesFilter<"user_form"> | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoWithAggregatesFilter<"user_form"> | $Enums.Pagamento
+    status?: EnumStatusWithAggregatesFilter<"user_form"> | $Enums.Status
   }
 
   export type user_formCreateInput = {
     id?: string
     nome: string
     telefone: string
+    valor: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
+    status: $Enums.Status
   }
 
   export type user_formUncheckedCreateInput = {
     id?: string
     nome: string
     telefone: string
+    valor: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
+    status: $Enums.Status
   }
 
   export type user_formUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
+    valor?: IntFieldUpdateOperationsInput | number
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoFieldUpdateOperationsInput | $Enums.Pagamento
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type user_formUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
+    valor?: IntFieldUpdateOperationsInput | number
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoFieldUpdateOperationsInput | $Enums.Pagamento
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type user_formCreateManyInput = {
     id?: string
     nome: string
     telefone: string
+    valor: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
+    status: $Enums.Status
   }
 
   export type user_formUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
+    valor?: IntFieldUpdateOperationsInput | number
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoFieldUpdateOperationsInput | $Enums.Pagamento
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type user_formUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
+    valor?: IntFieldUpdateOperationsInput | number
     camisa?: EnumCamisaCorFieldUpdateOperationsInput | $Enums.CamisaCor
     turma?: EnumTurmaFieldUpdateOperationsInput | $Enums.Turma
     tamanho?: EnumTamanhoFieldUpdateOperationsInput | $Enums.Tamanho
     estilo?: EnumEstilosCamisasFieldUpdateOperationsInput | $Enums.EstilosCamisas
     pagamento?: EnumPagamentoFieldUpdateOperationsInput | $Enums.Pagamento
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2281,6 +2409,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type EnumCamisaCorFilter<$PrismaModel = never> = {
@@ -2318,37 +2457,58 @@ export namespace Prisma {
     not?: NestedEnumPagamentoFilter<$PrismaModel> | $Enums.Pagamento
   }
 
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type user_formCountOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     telefone?: SortOrder
+    valor?: SortOrder
     camisa?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
     pagamento?: SortOrder
+    status?: SortOrder
+  }
+
+  export type user_formAvgOrderByAggregateInput = {
+    valor?: SortOrder
   }
 
   export type user_formMaxOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     telefone?: SortOrder
+    valor?: SortOrder
     camisa?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
     pagamento?: SortOrder
+    status?: SortOrder
   }
 
   export type user_formMinOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     telefone?: SortOrder
+    valor?: SortOrder
     camisa?: SortOrder
     turma?: SortOrder
     tamanho?: SortOrder
     estilo?: SortOrder
     pagamento?: SortOrder
+    status?: SortOrder
+  }
+
+  export type user_formSumOrderByAggregateInput = {
+    valor?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2367,6 +2527,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumCamisaCorWithAggregatesFilter<$PrismaModel = never> = {
@@ -2419,8 +2595,26 @@ export namespace Prisma {
     _max?: NestedEnumPagamentoFilter<$PrismaModel>
   }
 
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type EnumCamisaCorFieldUpdateOperationsInput = {
@@ -2443,6 +2637,10 @@ export namespace Prisma {
     set?: $Enums.Pagamento
   }
 
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2455,6 +2653,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedEnumCamisaCorFilter<$PrismaModel = never> = {
@@ -2492,6 +2701,13 @@ export namespace Prisma {
     not?: NestedEnumPagamentoFilter<$PrismaModel> | $Enums.Pagamento
   }
 
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2509,7 +2725,7 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -2517,7 +2733,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedEnumCamisaCorWithAggregatesFilter<$PrismaModel = never> = {
@@ -2568,6 +2800,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPagamentoFilter<$PrismaModel>
     _max?: NestedEnumPagamentoFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
 

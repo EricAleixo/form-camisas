@@ -2,26 +2,28 @@ import { PrismaClient, Prisma } from "@/generated/prisma"
 
 const prisma = new PrismaClient()
 
-export async function PUT(req: Request, { params }: { params: { id_user: string } }) {
+export async function PUT(req: Request, context: { params: { id_user: string } }) {
 
-    const id = params.id_user
+    const id = context.params.id_user
     try{
-        const { nome, camisa, estilo, numero, pagamento, tamanho, turma } = await req.json()
-    
-        const userUpdate = await prisma.user_form.update({
-            where:{
-                id: id
-            },
-            data: {
-                nome: nome,
-                camisa: camisa,
-                estilo: estilo,
-                numero: numero,
-                pagamento: pagamento,
-                tamanho: tamanho,
-                turma: turma
-            }
-        })
+        const { nome, camisa, estilo, telefone , pagamento, tamanho, turma, status, valor } = await req.json()
+
+    const userUpdate = await prisma.user_form.update({
+        where: {
+            id: id
+        },
+        data: {
+            nome: nome,
+            camisa: camisa,
+            estilo: estilo,
+            telefone: telefone,
+            pagamento: pagamento,
+            tamanho: tamanho,
+            turma: turma,
+            status: status,
+            valor: valor
+        }
+    })
     
         return Response.json({
             data: userUpdate
@@ -35,8 +37,8 @@ export async function PUT(req: Request, { params }: { params: { id_user: string 
 
 }
 
-export async function DELETE(req: Request, {params}: {params: {id_user: string}}) {
-    const id = params.id_user
+export async function DELETE(req: Request, context: {params: {id_user: string}}) {
+    const id = context.params.id_user
     
     try{
         await prisma.user_form.delete({

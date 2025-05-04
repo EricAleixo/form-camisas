@@ -18,11 +18,13 @@ model user_form {
   id        String         @id @default(uuid())
   nome      String
   telefone  String
+  valor     Int
   camisa    CamisaCor
   turma     Turma
   tamanho   Tamanho
   estilo    EstilosCamisas
   pagamento Pagamento
+  status    Status
 }
 
 enum CamisaCor {
@@ -54,4 +56,9 @@ enum EstilosCamisas {
 enum Pagamento {
   PIX
   FISICO
+}
+
+enum Status {
+  PENDENTE
+  PAGO
 }

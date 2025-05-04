@@ -124,11 +124,13 @@ exports.Prisma.User_formScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   telefone: 'telefone',
+  valor: 'valor',
   camisa: 'camisa',
   turma: 'turma',
   tamanho: 'tamanho',
   estilo: 'estilo',
-  pagamento: 'pagamento'
+  pagamento: 'pagamento',
+  status: 'status'
 };
 
 exports.Prisma.SortOrder = {
@@ -169,6 +171,11 @@ exports.EstilosCamisas = exports.$Enums.EstilosCamisas = {
 exports.Pagamento = exports.$Enums.Pagamento = {
   PIX: 'PIX',
   FISICO: 'FISICO'
+};
+
+exports.Status = exports.$Enums.Status = {
+  PENDENTE: 'PENDENTE',
+  PAGO: 'PAGO'
 };
 
 exports.Prisma.ModelName = {
