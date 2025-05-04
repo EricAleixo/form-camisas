@@ -197,7 +197,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://eric:azul20264552@localhost:5433/form_db"
+        "value": "postgresql://form-camisas_owner:npg_aMIKO0g4NAck@ep-crimson-field-a4cokwp8.us-east-1.aws.neon.tech/form-camisas?sslmode=require"
       }
     }
   },
