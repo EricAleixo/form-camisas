@@ -54,8 +54,7 @@ export default function CadastroCamiseta() {
   const camisaSelecionada = watch("camisa");
 
   const onSubmit = (data: CadastroFormData) => {
-    console.log("Dados enviados:", data);
-    axios.post("http://localhost:3000/api/usersForm", data)
+    axios.post("api/usersForm", data)
 
     if (data.pagamento === "PIX") {
       setOpenPix(true);
@@ -169,7 +168,7 @@ export default function CadastroCamiseta() {
       <div className="space-y-2">
         <Label>Forma de Pagamento</Label>
         <RadioGroup defaultValue="pix">
-          {["PIX", "PRESENCIAL"].map((forma) => (
+          {["PIX", "FISICO"].map((forma) => (
             <div key={forma} className="flex items-center space-x-2">
               <RadioGroupItem
                 id={forma}

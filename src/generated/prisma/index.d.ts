@@ -2309,26 +2309,26 @@ export namespace Prisma {
     id?: string
     nome: string
     telefone: string
-    valor: number
+    valor?: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
-    status: $Enums.Status
+    status?: $Enums.Status
   }
 
   export type user_formUncheckedCreateInput = {
     id?: string
     nome: string
     telefone: string
-    valor: number
+    valor?: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
-    status: $Enums.Status
+    status?: $Enums.Status
   }
 
   export type user_formUpdateInput = {
@@ -2361,13 +2361,13 @@ export namespace Prisma {
     id?: string
     nome: string
     telefone: string
-    valor: number
+    valor?: number
     camisa: $Enums.CamisaCor
     turma: $Enums.Turma
     tamanho: $Enums.Tamanho
     estilo: $Enums.EstilosCamisas
     pagamento: $Enums.Pagamento
-    status: $Enums.Status
+    status?: $Enums.Status
   }
 
   export type user_formUpdateManyMutationInput = {

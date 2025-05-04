@@ -18,13 +18,13 @@ model user_form {
   id        String         @id @default(uuid())
   nome      String
   telefone  String
-  valor     Int
+  valor     Int            @default(0)
   camisa    CamisaCor
   turma     Turma
   tamanho   Tamanho
   estilo    EstilosCamisas
   pagamento Pagamento
-  status    Status
+  status    Status         @default(PENDENTE)
 }
 
 enum CamisaCor {
