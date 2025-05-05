@@ -15,8 +15,10 @@ import {
 
 
 function formatTurma(turma: Usuario["turma"]) {
-    if (turma === "INFOA3" || turma === "INFOB3") {
-        return "3º Info";
+    if (turma === "INFOA3"){
+        return "3º Info A";
+    }else if(turma === "INFOB3"){
+        return "3º Info B"
     }
     return "Professor";
 }
