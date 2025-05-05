@@ -58,9 +58,10 @@ export default function CadastroCamiseta() {
 
     if (data.pagamento === "PIX") {
       setOpenPix(true);
-    } else {
-      setOpenEspecie(true);
+      return;
     }
+    setOpenEspecie(true);
+
   }
 
   return (

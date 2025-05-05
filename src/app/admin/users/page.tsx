@@ -91,18 +91,18 @@ export default function Dashboard() {
         <div className="min-h-screen w-screen bg-[#f9fafb] p-6">
             <h1 className="text-3xl font-bold text-[#07038C] mb-6">Dashboard de Camisetas</h1>
 
-            <div className="flex justify-between mb-4 items-center gap-4">
+            <div className="mb-4 gap-4 sm:flex sm:justify-between">
                 <Input
                     placeholder="Buscar por nome..."
                     value={filtro}
                     onChange={(e) => setFiltro(e.target.value)}
-                    className="max-w-sm"
+                    className="max-w-sm mb-6 sm:mb-0"
                 />
 
                 <select
                     value={statusFiltro}
                     onChange={(e) => setStatusFiltro(e.target.value as any)}
-                    className="border p-2 rounded-md"
+                    className="border p-2 rounded-md mr-9 sm:mr-0"
                 >
                     <option value="">Todos</option>
                     <option value="PAGO">Pago</option>
