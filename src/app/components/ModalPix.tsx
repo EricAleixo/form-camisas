@@ -12,8 +12,8 @@ interface ModalPixProps {
 export const ModalPix = ({ open, onClose }: ModalPixProps) => {
   const [copied, setCopied] = useState(false)
 
-  const chavePix = "chavepix@email.com"
-  const contatoTelefone = "(11) 91234-5678"
+  const chavePix = "83991610209"
+  const contatoTelefone = "(83) 991610209"
 
   const handleCopyPix = async () => {
     try {
@@ -39,7 +39,7 @@ export const ModalPix = ({ open, onClose }: ModalPixProps) => {
           <img src="/qrcode.png" alt="QR Code Pix" className="w-48 h-48" />
 
           <div className="text-center space-y-2">
-            <p className="font-semibold break-all">{chavePix}</p>
+            <p className="font-semibold break-all">Chave pix: {chavePix}</p>
             <Button 
               size="sm" 
               className="bg-[#07038C] hover:bg-[#24208C] cursor-pointer text-white"
@@ -52,7 +52,7 @@ export const ModalPix = ({ open, onClose }: ModalPixProps) => {
           <div className="text-center space-y-1">
             <p className="font-semibold text-lg text-[#07038C]">Contato: {contatoTelefone}</p>
             <a 
-              href="https://wa.me/5511912345678" 
+              href="https://wa.me/558391610209" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-green-600 underline text-sm"

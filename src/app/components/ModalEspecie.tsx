@@ -9,7 +9,7 @@ interface ModalEspecieProps {
 }
 
 export const ModalEspecie = ({ open, onClose }: ModalEspecieProps) => {
-  const contatoTelefone = "(11) 91234-5678"
+  const contatoTelefone = "(83) 991610209"
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -24,7 +24,7 @@ export const ModalEspecie = ({ open, onClose }: ModalEspecieProps) => {
         <div className="text-center space-y-4 mt-4">
           <p className="text-lg font-semibold text-[#07038C]">Contato: {contatoTelefone}</p>
           <a 
-            href="https://wa.me/5511912345678" 
+            href="https://wa.me/558391610209" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-green-600 underline text-sm"

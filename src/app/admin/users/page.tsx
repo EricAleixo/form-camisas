@@ -140,7 +140,15 @@ export default function Dashboard() {
                         {usuariosFiltrados.map((usuario) => (
                             <tr key={usuario.id} className="border-b">
                                 <td className="p-2">{usuario.nome}</td>
-                                <td className="p-2">{usuario.telefone}</td>
+                                <td className="p-2">
+                                    <a
+                                        href={`https://wa.me/${usuario.telefone}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-green-600 underline text-sm"
+                                    >
+                                        {usuario.telefone}
+                                    </a></td>
                                 <td className="p-2 font-bold">{formatTurma(usuario.turma)}</td>
                                 <td className="p-2">{usuario.camisa}</td>
                                 <td className="p-2">{usuario.tamanho}</td>
@@ -150,8 +158,8 @@ export default function Dashboard() {
                                 <td className="p-2">
                                     <span
                                         className={`px-2 py-1 rounded-full text-sm ${usuario.status === "PAGO"
-                                                ? "bg-green-200 text-green-800"
-                                                : "bg-yellow-200 text-yellow-800"
+                                            ? "bg-green-200 text-green-800"
+                                            : "bg-yellow-200 text-yellow-800"
                                             }`}
                                     >
                                         {usuario.status}
@@ -219,8 +227,8 @@ export default function Dashboard() {
                                 <strong>Status:</strong>{" "}
                                 <span
                                     className={`px-2 py-1 rounded-full text-sm ${usuario.status === "PAGO"
-                                            ? "bg-green-200 text-green-800"
-                                            : "bg-yellow-200 text-yellow-800"
+                                        ? "bg-green-200 text-green-800"
+                                        : "bg-yellow-200 text-yellow-800"
                                         }`}
                                 >
                                     {usuario.status}
